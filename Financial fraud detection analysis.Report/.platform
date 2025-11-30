@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Financial fraud detection analysis"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a9bb0ef2-02e7-4583-9258-6d69eabde899"
+  }
+}
