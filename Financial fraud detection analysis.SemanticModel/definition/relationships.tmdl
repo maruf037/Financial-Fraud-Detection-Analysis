@@ -11,3 +11,7 @@ relationship AutoDetected_da9643c2-9269-49a6-be0f-35218e549720
 	fromColumn: FactTransactions.category
 	toColumn: DimCategory.CategoryKey
 
+relationship c169a367-9a83-5292-af07-25095202df8e
+	fromColumn: FactTransactions.merchant
+	toColumn: DimMerchant.MerchantKey
+

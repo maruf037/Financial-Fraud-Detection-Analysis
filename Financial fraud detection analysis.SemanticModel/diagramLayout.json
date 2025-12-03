@@ -4,7 +4,7 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 0,
+        "x": 313,
         "y": 0
       },
       "nodes": [
@@ -22,8 +22,8 @@
         },
         {
           "location": {
-            "x": 0,
-            "y": 98
+            "x": 487,
+            "y": 0
           },
           "nodeIndex": "DimCategory",
           "nodeLineageTag": "146afa93-2e57-4012-be88-186ef15e95c2",
@@ -35,8 +35,8 @@
         },
         {
           "location": {
-            "x": 284,
-            "y": 74
+            "x": 425,
+            "y": 407
           },
           "nodeIndex": "DimCustomers",
           "nodeLineageTag": "4fea03e5-5c84-4f58-a22c-50e79fde989b",
@@ -48,8 +48,8 @@
         },
         {
           "location": {
-            "x": 568,
-            "y": 98
+            "x": 835,
+            "y": 431
           },
           "nodeIndex": "DimMerchant",
           "nodeLineageTag": "d78d28b0-6db0-4c88-b266-e67424a01015",

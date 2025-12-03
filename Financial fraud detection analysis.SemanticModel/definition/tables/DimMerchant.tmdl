@@ -15,9 +15,10 @@ table DimMerchant
 				let
 				    Source = FactTransactions,
 				    #"Removed Columns" = Table.RemoveColumns(Source,{"TransactionKey", "step", "customer", "age", "gender", "category", "amount", "fraud", "Transaction Date", "Amount Range", "IsFraud"}),
-				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"merchant", "MerchantKey"}})
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"merchant", "MerchantKey"}}),
+				    #"Removed Duplicates" = Table.Distinct(#"Renamed Columns")
 				in
-				    #"Renamed Columns"
+				    #"Removed Duplicates"
 
 	annotation PBI_NavigationStepName = Navigation
 
