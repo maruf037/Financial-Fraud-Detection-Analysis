@@ -1,0 +1,43 @@
+table DimCustomers
+	lineageTag: 4fea03e5-5c84-4f58-a22c-50e79fde989b
+
+	column CustomerKey
+		dataType: string
+		lineageTag: 879d53af-902c-4cc0-baa5-58f40858f9d4
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column age
+		dataType: int64
+		formatString: 0
+		lineageTag: 3398bb9f-c562-4ab9-9ba6-f2e39689fa79
+		summarizeBy: none
+		sourceColumn: age
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: 674655d2-56fb-4250-bd44-6e4683716ddb
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimCustomers = m
+		mode: import
+		source =
+				let
+				    Source = FactTransactions,
+				    #"Removed Columns" = Table.RemoveColumns(Source,{"TransactionKey", "step", "merchant", "category", "amount", "fraud", "Transaction Date", "Amount Range", "IsFraud"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"customer", "CustomerKey"}, {"gender", "Gender"}}),
+				    #"Removed Duplicates" = Table.Distinct(#"Renamed Columns", {"CustomerKey"})
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

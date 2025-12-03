@@ -10,13 +10,51 @@
       "nodes": [
         {
           "location": {
-            "x": 0,
+            "x": 852,
             "y": 0
           },
-          "nodeIndex": "bs140513_032310",
-          "nodeLineageTag": "7db2a449-6e9a-45d2-a357-71c207d38e03",
+          "nodeIndex": "FactTransactions",
           "size": {
             "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 98
+          },
+          "nodeIndex": "DimCategory",
+          "nodeLineageTag": "146afa93-2e57-4012-be88-186ef15e95c2",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 284,
+            "y": 74
+          },
+          "nodeIndex": "DimCustomers",
+          "nodeLineageTag": "4fea03e5-5c84-4f58-a22c-50e79fde989b",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 568,
+            "y": 98
+          },
+          "nodeIndex": "DimMerchant",
+          "nodeLineageTag": "d78d28b0-6db0-4c88-b266-e67424a01015",
+          "size": {
+            "height": 104,
             "width": 234
           },
           "zIndex": 0

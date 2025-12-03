@@ -1,0 +1,26 @@
+table DimCategory
+	lineageTag: 146afa93-2e57-4012-be88-186ef15e95c2
+
+	column CategoryKey
+		dataType: string
+		lineageTag: cbc07527-1e38-49df-bd98-0a87ad63b580
+		summarizeBy: none
+		sourceColumn: CategoryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimCategory = m
+		mode: import
+		source =
+				let
+				    Source = FactTransactions,
+				    #"Removed Columns" = Table.RemoveColumns(Source,{"TransactionKey", "step", "customer", "age", "gender", "merchant", "amount", "fraud", "Transaction Date", "Amount Range", "IsFraud"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Columns"),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Duplicates",{{"category", "CategoryKey"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

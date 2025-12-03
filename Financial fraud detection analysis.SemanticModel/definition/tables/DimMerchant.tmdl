@@ -1,0 +1,25 @@
+table DimMerchant
+	lineageTag: d78d28b0-6db0-4c88-b266-e67424a01015
+
+	column MerchantKey
+		dataType: string
+		lineageTag: a6a49fd3-2bcc-4905-b980-51718215cfbf
+		summarizeBy: none
+		sourceColumn: MerchantKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimMerchant = m
+		mode: import
+		source =
+				let
+				    Source = FactTransactions,
+				    #"Removed Columns" = Table.RemoveColumns(Source,{"TransactionKey", "step", "customer", "age", "gender", "category", "amount", "fraud", "Transaction Date", "Amount Range", "IsFraud"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"merchant", "MerchantKey"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

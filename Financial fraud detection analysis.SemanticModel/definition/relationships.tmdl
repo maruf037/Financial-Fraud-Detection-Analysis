@@ -1,0 +1,13 @@
+relationship d2ced183-99e9-4203-9b73-b1053f34ac8e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactTransactions.'Transaction Date'
+	toColumn: LocalDateTable_5fe0477a-f670-4c00-beae-44e88edfc18b.Date
+
+relationship AutoDetected_f9476b4b-d5e2-4c8c-9c6b-f91380498fca
+	fromColumn: FactTransactions.customer
+	toColumn: DimCustomers.CustomerKey
+
+relationship AutoDetected_da9643c2-9269-49a6-be0f-35218e549720
+	fromColumn: FactTransactions.category
+	toColumn: DimCategory.CategoryKey
+

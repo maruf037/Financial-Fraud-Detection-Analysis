@@ -6,13 +6,23 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
+/// Errors in queries that were loaded on 03/12/2025 3:45:54 PM.
+queryGroup 'Query Errors - 03/12/2025 3:45:54 PM'
+
+	annotation PBI_QueryGroupOrder = 0
+
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["bs140513_032310"]
+annotation PBI_QueryOrder = ["FactTransactions","DimCustomers","DimMerchant","DimCategory","Errors in DimCustomers","Errors in DimMerchant","Errors in FactTransactions"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
-ref table bs140513_032310
+ref table FactTransactions
+ref table DimCustomers
+ref table DimMerchant
+ref table DimCategory
+ref table DateTableTemplate_04925ee4-1c7b-4a0b-a7eb-5dba56c2269b
+ref table LocalDateTable_5fe0477a-f670-4c00-beae-44e88edfc18b
 
 ref cultureInfo en-US
 

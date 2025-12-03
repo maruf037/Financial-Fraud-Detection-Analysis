@@ -1,0 +1,152 @@
+table FactTransactions
+	lineageTag: 7db2a449-6e9a-45d2-a357-71c207d38e03
+
+	column step
+		dataType: int64
+		formatString: 0
+		lineageTag: 4b0913e0-7cf6-4323-850e-2d37bcfaef3b
+		summarizeBy: sum
+		sourceColumn: step
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer
+		dataType: string
+		lineageTag: 4d209268-6a6c-4d1b-8554-8c8317367bc1
+		summarizeBy: none
+		sourceColumn: customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column age
+		dataType: int64
+		formatString: 0
+		lineageTag: 67b1e02f-c7b4-43d9-ab02-2bcc8aa1ca0c
+		summarizeBy: sum
+		sourceColumn: age
+
+		annotation SummarizationSetBy = Automatic
+
+	column gender
+		dataType: string
+		lineageTag: 593c808b-2a63-4cf1-8bf2-8dfd0c4c6f1e
+		summarizeBy: none
+		sourceColumn: gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column merchant
+		dataType: string
+		lineageTag: e6a30ee9-a50f-4ffc-be38-8f298852cf6b
+		summarizeBy: none
+		sourceColumn: merchant
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: c39dbc9d-2d92-45ec-b7c6-f43663be53e0
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount
+		dataType: double
+		lineageTag: 949d7ef6-2ef5-4f7b-83ef-6769c151a905
+		summarizeBy: sum
+		sourceColumn: amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fraud
+		dataType: int64
+		formatString: 0
+		lineageTag: 9bb4a651-0398-40b9-8795-75291af6540b
+		summarizeBy: sum
+		sourceColumn: fraud
+
+		annotation SummarizationSetBy = Automatic
+
+	column TransactionKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 38aaab77-70ee-461b-8641-c3a8ac3e9cee
+		summarizeBy: count
+		sourceColumn: TransactionKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transaction Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3ef17b8c-ce0f-43a2-b26c-757eed42c4ec
+		summarizeBy: none
+		sourceColumn: Transaction Date
+
+		variation Variation
+			isDefault
+			relationship: d2ced183-99e9-4203-9b73-b1053f34ac8e
+			defaultHierarchy: LocalDateTable_5fe0477a-f670-4c00-beae-44e88edfc18b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Amount Range'
+		dataType: string
+		lineageTag: e8585ac3-3b48-4093-9800-aff5d9dc2bd7
+		summarizeBy: none
+		sourceColumn: Amount Range
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsFraud
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f1590ac5-2387-4449-81d9-4a1c55c7a26d
+		summarizeBy: none
+		sourceColumn: IsFraud
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactTransactions = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("F:\Power BI Projects\8. Financial Fraud Detection Analysis\Assets\bs140513_032310.csv"),[Delimiter=",", Columns=10, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"step", Int64.Type}, {"customer", type text}, {"age", type text}, {"gender", type text}, {"zipcodeOri", type text}, {"merchant", type text}, {"zipMerchant", type text}, {"category", type text}, {"amount", type number}, {"fraud", Int64.Type}}),
+				    // Replaced ' (single quote) from customer, age, gender, category and merchant columns.
+				    #"Replaced Value" = Table.ReplaceValue(#"Changed Type","'","",Replacer.ReplaceText,{"customer", "age", "gender", "merchant", "category"}),
+				    // Removed zipcodeOri, zipMerchant columns.
+				    #"Removed Columns" = Table.RemoveColumns(#"Replaced Value",{"zipcodeOri", "zipMerchant"}),
+				    // Replaced 'U' in the gender column with 'Unknown'.
+				    #"Replaced Value 'U'" = Table.ReplaceValue(#"Removed Columns","U","Unknown",Replacer.ReplaceText,{"gender"}),
+				    // Added 'Transaction Date' column from 01/01/2023
+				    #"Added Custom" = Table.AddColumn(#"Replaced Value 'U'", "Transaction Date", each Date.AddDays(#date(2023, 1, 1), [step])),
+				    // Changed data type of 'Transaction Date' column to date.
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Transaction Date", type date}}),
+				    // Added "Amount Range" column
+				    #"Added Conditional Column" = Table.AddColumn(#"Changed Type1", "Amount Range", each if [amount] < 20 then "Small (<20)" else if [amount] < 100 then "Medium (20 to 100)" else "Large (>100)"),
+				    // Changed 'age' column type to whole number
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Added Conditional Column",{{"age", Int64.Type}}),
+				    // Added 'IsFraud' flag column
+				    #"Added Custom1" = Table.AddColumn(#"Changed Type2", "IsFraud", each [fraud] = 1),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Added Custom1",{"step", "customer", "age", "gender", "merchant", "category", "amount", "fraud", "Transaction Date", "Amount Range", "IsFraud"}),
+				    // Changed 'IsFraud' column type to boolean
+				    #"Changed Type3" = Table.TransformColumnTypes(#"Reordered Columns",{{"IsFraud", type logical}}),
+				    // Added Index column from 1
+				    #"Added Index" = Table.AddIndexColumn(#"Changed Type3", "Index", 1, 1, Int64.Type),
+				    // Renamed index column to 'Transaction Key'
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Index",{{"Index", "TransactionKey"}}),
+				    #"Reordered Columns1" = Table.ReorderColumns(#"Renamed Columns",{"TransactionKey", "step", "customer", "age", "gender", "merchant", "category", "amount", "fraud", "Transaction Date", "Amount Range", "IsFraud"})
+				in
+				    #"Reordered Columns1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
