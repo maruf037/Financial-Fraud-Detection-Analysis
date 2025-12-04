@@ -1,8 +1,3 @@
-relationship d2ced183-99e9-4203-9b73-b1053f34ac8e
-	joinOnDateBehavior: datePartOnly
-	fromColumn: FactTransactions.'Transaction Date'
-	toColumn: LocalDateTable_5fe0477a-f670-4c00-beae-44e88edfc18b.Date
-
 relationship AutoDetected_f9476b4b-d5e2-4c8c-9c6b-f91380498fca
 	fromColumn: FactTransactions.customer
 	toColumn: DimCustomers.CustomerKey
@@ -14,4 +9,8 @@ relationship AutoDetected_da9643c2-9269-49a6-be0f-35218e549720
 relationship c169a367-9a83-5292-af07-25095202df8e
 	fromColumn: FactTransactions.merchant
 	toColumn: DimMerchant.MerchantKey
+
+relationship b654b6bd-3044-bdd3-bc21-67310790e65d
+	fromColumn: FactTransactions.'Transaction Date'
+	toColumn: DimDate.Date
 

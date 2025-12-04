@@ -1,0 +1,68 @@
+table _Measures
+	lineageTag: 652483fc-5aa6-4a59-8d0d-d7c19600c6ee
+
+	measure 'Total Transactions' = COUNTROWS(FactTransactions)
+		formatString: 0
+		lineageTag: ec706b27-1b93-48e0-a534-f389bd54b729
+
+	measure 'Total Amount' = SUM(FactTransactions[amount])
+		lineageTag: 17469be3-15d5-497c-8a0a-340a00e043e7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Fraud Transactions' = CALCULATE([Total Transactions], FactTransactions[fraud] = 1)
+		formatString: 0
+		lineageTag: 6b99a43f-da96-4e3a-aea9-356c01f9ea5c
+
+	measure 'Non-Fraud Transactions' = CALCULATE([Total Transactions], FactTransactions[fraud] = 0)
+		formatString: 0
+		lineageTag: 119c5edf-2951-4dfe-a604-23276167d4aa
+
+	measure 'Fraud Amount' = CALCULATE([Total Amount], FactTransactions[fraud] = 1)
+		lineageTag: f14ac383-0707-493b-a618-e895081daf10
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Non-Fraud Amount' = CALCULATE([Total Amount], FactTransactions[fraud] = 0)
+		lineageTag: f138a17f-da4b-420e-ba09-6231e3db5d0b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Transaction Amount' = AVERAGE(FactTransactions[amount])
+		lineageTag: 65b25122-c0ba-4ee4-8cc9-9096fb26dbb2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Fraud Amount' = CALCULATE([Average Transaction Amount], FactTransactions[fraud] = 1)
+		lineageTag: bcb6fcf0-b768-46f8-a472-7a269bd957f5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Fraud Rate %' = DIVIDE([Fraud Transactions], [Total Transactions])
+		lineageTag: 8624edb6-3f7e-4dcb-ba27-fa394951b8e6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Fraud Amount %' = DIVIDE([Fraud Amount], [Total Amount])
+		lineageTag: 6188cfd1-24a3-4c15-aa82-082f3a097a70
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column
+		isHidden
+		formatString: 0
+		lineageTag: d8899a26-294e-4798-b78d-9c25c7aa1edb
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 3ac801034d18480a99981eb74a7b6180
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

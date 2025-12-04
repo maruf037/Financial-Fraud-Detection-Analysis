@@ -1,0 +1,97 @@
+table DimDate
+	lineageTag: 2dc7b3d4-06ce-4698-9e65-bc4bbf07bfda
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: General Date
+		lineageTag: ad89226a-aded-4be8-8b21-d992d22cc2d7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: 282c1093-ed59-46c3-9fab-12e2e4c2aa74
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		formatString: 0
+		lineageTag: 112d8d49-feab-48c3-af9e-51531905da0e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		lineageTag: 5aee932e-24a4-4dbd-866c-50e82565b9f3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year-Month
+		lineageTag: 1179354b-1dbb-49e6-aa57-d812ab026942
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year-Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		lineageTag: 813437f2-600b-47af-b1d3-c627510e1d65
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weekday
+		lineageTag: d56abeec-cf1b-448c-8356-0dc721f546e8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Weekday]
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsWeekend
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: d20f646b-5e85-49c5-8aa1-c54d0e4a2f9a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [IsWeekend]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimDate = calculated
+		mode: import
+		source = ```
+				
+				VAR MinDate =
+				    MIN ( FactTransactions[Transaction Date] )
+				VAR MaxDate =
+				    MAX ( FactTransactions[Transaction Date] )
+				RETURN
+				ADDCOLUMNS (
+				    CALENDAR ( MinDate, MaxDate ),
+				    "Year", YEAR ( [Date] ),
+				    "Month Number", MONTH ( [Date] ),
+				    "Month Name", FORMAT ( [Date], "MMM" ),
+				    "Year-Month", FORMAT ( [Date], "YYYY-MM" ),
+				    "Quarter", "Q" & FORMAT ( [Date], "Q" ),
+				    "Weekday", FORMAT ( [Date], "ddd" ),
+				    "IsWeekend", IF ( WEEKDAY ( [Date], 2 ) > 5, TRUE (), FALSE () )
+				)
+				
+				```
+
+	annotation PBI_Id = 7daccdaa551c423c817797b776195a4b
+

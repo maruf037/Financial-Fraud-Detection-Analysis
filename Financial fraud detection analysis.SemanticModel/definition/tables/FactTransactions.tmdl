@@ -86,11 +86,6 @@ table FactTransactions
 		summarizeBy: none
 		sourceColumn: Transaction Date
 
-		variation Variation
-			isDefault
-			relationship: d2ced183-99e9-4203-9b73-b1053f34ac8e
-			defaultHierarchy: LocalDateTable_5fe0477a-f670-4c00-beae-44e88edfc18b.'Date Hierarchy'
-
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date

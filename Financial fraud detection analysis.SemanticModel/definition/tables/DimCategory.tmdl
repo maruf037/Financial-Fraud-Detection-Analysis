@@ -9,6 +9,14 @@ table DimCategory
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Text After Delimiter'
+		dataType: string
+		lineageTag: 0466dfbf-04d1-415c-bffd-3d4cfea93ee7
+		summarizeBy: none
+		sourceColumn: Text After Delimiter
+
+		annotation SummarizationSetBy = Automatic
+
 	partition DimCategory = m
 		mode: import
 		source =
@@ -16,9 +24,10 @@ table DimCategory
 				    Source = FactTransactions,
 				    #"Removed Columns" = Table.RemoveColumns(Source,{"TransactionKey", "step", "customer", "age", "gender", "merchant", "amount", "fraud", "Transaction Date", "Amount Range", "IsFraud"}),
 				    #"Removed Duplicates" = Table.Distinct(#"Removed Columns"),
-				    #"Renamed Columns" = Table.RenameColumns(#"Removed Duplicates",{{"category", "CategoryKey"}})
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Duplicates",{{"category", "CategoryKey"}}),
+				    #"Inserted Text After Delimiter" = Table.AddColumn(#"Renamed Columns", "Text After Delimiter", each Text.AfterDelimiter([CategoryKey], "_"), type text)
 				in
-				    #"Renamed Columns"
+				    #"Inserted Text After Delimiter"
 
 	annotation PBI_NavigationStepName = Navigation
 

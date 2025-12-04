@@ -21,8 +21,8 @@ ref table FactTransactions
 ref table DimCustomers
 ref table DimMerchant
 ref table DimCategory
-ref table DateTableTemplate_04925ee4-1c7b-4a0b-a7eb-5dba56c2269b
-ref table LocalDateTable_5fe0477a-f670-4c00-beae-44e88edfc18b
+ref table DimDate
+ref table _Measures
 
 ref cultureInfo en-US
 
