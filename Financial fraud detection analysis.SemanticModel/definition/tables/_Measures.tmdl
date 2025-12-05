@@ -48,6 +48,18 @@ table _Measures
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure 'Risk Index' = [Fraud Transactions] * [Fraud Rate %]
+		lineageTag: dc9b2835-d118-4f14-bdd7-52f98d39112b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Fraud Amount Share %' =
+			
+			DIVIDE ( [Fraud Amount], [Total Amount] )
+		lineageTag: a17c3b78-bd50-437a-8bd1-388a785be46b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column Column
 		isHidden
 		formatString: 0

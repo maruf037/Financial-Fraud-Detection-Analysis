@@ -23,6 +23,7 @@ ref table DimMerchant
 ref table DimCategory
 ref table DimDate
 ref table _Measures
+ref table _Time_Measures
 
 ref cultureInfo en-US
 

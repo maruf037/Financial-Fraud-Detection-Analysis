@@ -1,0 +1,51 @@
+table _Time_Measures
+	lineageTag: 648d5225-8346-48e4-a763-48316edc3fd4
+
+	measure 'Total Amount YTD' = TOTALYTD([Total Amount], DimDate[Date])
+		lineageTag: a8f55405-6f70-4086-9cab-455b552b089a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Fraud Transaction YTD' = TOTALYTD([Fraud Transactions], DimDate[Date])
+		formatString: 0
+		lineageTag: a3abc8b4-35f3-4ee5-9d44-dbeb830e83d8
+
+	measure 'Total Amount Last Month' = CALCULATE([Total Amount], DATEADD(DimDate[Date], -1, MONTH))
+		lineageTag: 058ace9b-7ae0-4c29-a9e4-152671bb9e6a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Fraud Rate % Last Month' = CALCULATE([Fraud Rate %], DATEADD(DimDate[Date], -1, MONTH))
+		lineageTag: 920443b9-3253-405b-9a34-fa5c970cad70
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Fraud Rate YoY %' = ```
+			
+			                    VAR CurrentRate = [Fraud Rate %]
+			                    VAR LastYear = CALCULATE([Fraud Rate %], DATEADD(DimDate[Date], -1, YEAR))
+			                    RETURN
+			                    DIVIDE((CurrentRate - LastYear), LastYear)
+			```
+		lineageTag: 777e42bf-a211-4210-845f-7de714983d85
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column
+		isHidden
+		formatString: 0
+		lineageTag: 422f8635-b003-48e0-a493-9734e64018f7
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Time_Measures = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 914f70588a5b4205a3b422e4b1959f55
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

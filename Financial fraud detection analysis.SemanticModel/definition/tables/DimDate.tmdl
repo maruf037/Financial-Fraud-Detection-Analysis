@@ -4,13 +4,15 @@ table DimDate
 
 	column Date
 		isKey
-		formatString: General Date
+		formatString: dd/mm/yyyy
 		lineageTag: ad89226a-aded-4be8-8b21-d992d22cc2d7
 		summarizeBy: none
 		isNameInferred
 		sourceColumn: [Date]
 
 		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
 
 	column Year
 		formatString: 0

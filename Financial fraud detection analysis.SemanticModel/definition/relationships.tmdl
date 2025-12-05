@@ -1,7 +1,3 @@
-relationship AutoDetected_f9476b4b-d5e2-4c8c-9c6b-f91380498fca
-	fromColumn: FactTransactions.customer
-	toColumn: DimCustomers.CustomerKey
-
 relationship AutoDetected_da9643c2-9269-49a6-be0f-35218e549720
 	fromColumn: FactTransactions.category
 	toColumn: DimCategory.CategoryKey
@@ -13,4 +9,8 @@ relationship c169a367-9a83-5292-af07-25095202df8e
 relationship b654b6bd-3044-bdd3-bc21-67310790e65d
 	fromColumn: FactTransactions.'Transaction Date'
 	toColumn: DimDate.Date
+
+relationship 7352654c-3125-3bd1-38ab-02201076336d
+	fromColumn: FactTransactions.customer
+	toColumn: DimCustomers.CustomerKey
 
