@@ -1,0 +1,122 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "name": "b1d22e020674388e5edd",
+  "position": {
+    "x": 371.563981042654,
+    "y": 12.132701421800947,
+    "z": 2,
+    "height": 347.29857819905209,
+    "width": 897.81990521327009,
+    "tabOrder": 2
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimCategory"
+                    }
+                  },
+                  "Property": "CategoryShort"
+                }
+              },
+              "queryRef": "DimCategory.CategoryShort",
+              "nativeQueryRef": "CategoryShort",
+              "active": true
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Fraud Amount"
+                }
+              },
+              "queryRef": "_Measures.Fraud Amount",
+              "nativeQueryRef": "Fraud Amount"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Total Transactions"
+                }
+              },
+              "queryRef": "_Measures.Total Transactions",
+              "nativeQueryRef": "Total Transactions",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Fraud Rate %"
+                }
+              },
+              "queryRef": "_Measures.Fraud Rate %",
+              "nativeQueryRef": "Fraud Rate %"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

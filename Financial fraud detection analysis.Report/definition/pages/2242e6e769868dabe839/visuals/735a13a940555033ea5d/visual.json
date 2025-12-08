@@ -1,0 +1,178 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "name": "735a13a940555033ea5d",
+  "position": {
+    "x": 371.12426035502961,
+    "y": 369.23076923076928,
+    "z": 3,
+    "height": 337.04142011834324,
+    "width": 706.27218934911252,
+    "tabOrder": 3
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimCategory"
+                    }
+                  },
+                  "Property": "CategoryShort"
+                }
+              },
+              "queryRef": "DimCategory.CategoryShort",
+              "nativeQueryRef": "CategoryShort",
+              "active": true
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimMerchant"
+                    }
+                  },
+                  "Property": "MerchantKey"
+                }
+              },
+              "queryRef": "DimMerchant.MerchantKey",
+              "nativeQueryRef": "MerchantKey",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Fraud Transactions"
+                }
+              },
+              "queryRef": "_Measures.Fraud Transactions",
+              "nativeQueryRef": "Fraud Transactions"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Fraud Rate %"
+                }
+              },
+              "queryRef": "_Measures.Fraud Rate %",
+              "nativeQueryRef": "Fraud Rate %"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f083e2ed9725757127ce",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimMerchant"
+              }
+            },
+            "Property": "MerchantKey"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "1f25911087db0c37be55",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimCategory"
+              }
+            },
+            "Property": "CategoryShort"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "073aab37d5324c9b0665",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Fraud Transactions"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "315396000c000b6cb89a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Fraud Rate %"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

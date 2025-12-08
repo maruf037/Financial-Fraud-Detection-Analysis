@@ -39,9 +39,8 @@ table _Measures
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Fraud Rate %' = DIVIDE([Fraud Transactions], [Total Transactions])
+		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 8624edb6-3f7e-4dcb-ba27-fa394951b8e6
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Fraud Amount %' = DIVIDE([Fraud Amount], [Total Amount])
 		lineageTag: 6188cfd1-24a3-4c15-aa82-082f3a097a70

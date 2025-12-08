@@ -11,13 +11,13 @@
       "type": "SharedResources"
     },
     "customTheme": {
-      "name": "Divergent",
+      "name": "Custom9902756634347271.json",
       "reportVersionAtImport": {
         "visual": "2.1.0",
         "report": "2.1.0",
         "page": "2.0.0"
       },
-      "type": "SharedResources"
+      "type": "RegisteredResources"
     }
   },
   "objects": {
@@ -57,10 +57,16 @@
           "name": "CY24SU10",
           "path": "BaseThemes/CY24SU10.json",
           "type": "BaseTheme"
-        },
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
         {
-          "name": "Divergent",
-          "path": "BuiltInThemes/Divergent.json",
+          "name": "Custom9902756634347271.json",
+          "path": "Custom9902756634347271.json",
           "type": "CustomTheme"
         }
       ]

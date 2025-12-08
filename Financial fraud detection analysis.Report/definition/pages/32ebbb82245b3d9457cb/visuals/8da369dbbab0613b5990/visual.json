@@ -23,7 +23,7 @@
                       "Entity": "DimCategory"
                     }
                   },
-                  "Property": "Text After Delimiter"
+                  "Property": "CategoryShort"
                 }
               },
               "queryRef": "DimCategory.Text After Delimiter",
@@ -91,6 +91,19 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Fraud Amount by Category'"
                 }
               }
             }
