@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
   "name": "29958f6008750030c751",
   "position": {
-    "x": 10.616113744075829,
-    "y": 0,
+    "x": 19.715639810426538,
+    "y": 19.715639810426538,
     "z": 0,
-    "height": 720.37914691943126,
-    "width": 1269.3838862559242
+    "height": 688.53080568720372,
+    "width": 679.431279620853
   },
   "visual": {
     "visualType": "tableEx",
@@ -141,10 +141,10 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "DimDate"
+                    "Entity": "DimMerchant"
                   }
                 },
-                "Property": "Date"
+                "Property": "MerchantKey"
               }
             },
             "direction": "Ascending"
@@ -159,7 +159,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "227.49288405323514D"
+                  "Value": "104.91085149389808D"
                 }
               }
             }
@@ -173,7 +173,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "190.194306556956D"
+                  "Value": "52.450166804219364D"
                 }
               }
             }
@@ -229,13 +229,41 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "183.66353450085904D"
+                  "Value": "116.80877145006711D"
                 }
               }
             }
           },
           "selector": {
             "metadata": "DimCategory.CategoryShort"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
           }
         }
       ]
