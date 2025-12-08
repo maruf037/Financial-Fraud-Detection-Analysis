@@ -98,6 +98,20 @@
               },
               "queryRef": "_Measures.Average Transaction Amount",
               "nativeQueryRef": "Average Transaction Amount"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimCategory"
+                    }
+                  },
+                  "Property": "CategoryShort"
+                }
+              },
+              "queryRef": "DimCategory.CategoryShort",
+              "nativeQueryRef": "CategoryShort"
             }
           ]
         }
@@ -106,13 +120,13 @@
         "sort": [
           {
             "field": {
-              "Measure": {
+              "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "_Measures"
+                    "Entity": "DimCustomers"
                   }
                 },
-                "Property": "Fraud Rate %"
+                "Property": "CustomerKey"
               }
             },
             "direction": "Descending"
@@ -144,14 +158,14 @@
                           "min": {
                             "color": {
                               "Literal": {
-                                "Value": "'#f5b7a3'"
+                                "Value": "'#F7EFEF'"
                               }
                             }
                           },
                           "max": {
                             "color": {
                               "Literal": {
-                                "Value": "'#ad3813'"
+                                "Value": "'#F92100'"
                               }
                             }
                           },

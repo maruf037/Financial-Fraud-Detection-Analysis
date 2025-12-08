@@ -1,0 +1,245 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "name": "29958f6008750030c751",
+  "position": {
+    "x": 10.616113744075829,
+    "y": 0,
+    "z": 0,
+    "height": 720.37914691943126,
+    "width": 1269.3838862559242
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimDate"
+                    }
+                  },
+                  "Property": "Date"
+                }
+              },
+              "queryRef": "DimDate.Date",
+              "nativeQueryRef": "Date"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "FactTransactions"
+                        }
+                      },
+                      "Property": "step"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(FactTransactions.step)",
+              "nativeQueryRef": "Sum of step"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimCustomers"
+                    }
+                  },
+                  "Property": "CustomerKey"
+                }
+              },
+              "queryRef": "DimCustomers.CustomerKey",
+              "nativeQueryRef": "CustomerKey"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimCustomers"
+                    }
+                  },
+                  "Property": "age"
+                }
+              },
+              "queryRef": "DimCustomers.age",
+              "nativeQueryRef": "age"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimCustomers"
+                    }
+                  },
+                  "Property": "Gender"
+                }
+              },
+              "queryRef": "DimCustomers.Gender",
+              "nativeQueryRef": "Gender"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimMerchant"
+                    }
+                  },
+                  "Property": "MerchantKey"
+                }
+              },
+              "queryRef": "DimMerchant.MerchantKey",
+              "nativeQueryRef": "MerchantKey"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimCategory"
+                    }
+                  },
+                  "Property": "CategoryShort"
+                }
+              },
+              "queryRef": "DimCategory.CategoryShort",
+              "nativeQueryRef": "CategoryShort"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactTransactions"
+                    }
+                  },
+                  "Property": "IsFraud"
+                }
+              },
+              "queryRef": "FactTransactions.IsFraud",
+              "nativeQueryRef": "IsFraud"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DimDate"
+                  }
+                },
+                "Property": "Date"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "227.49288405323514D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DimCustomers.CustomerKey"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "190.194306556956D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(FactTransactions.step)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "45.13270482503075D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DimCustomers.age"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "88.88150462911379D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DimCustomers.Gender"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "135.94788724777806D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DimMerchant.MerchantKey"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "183.66353450085904D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DimCategory.CategoryShort"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
